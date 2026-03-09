@@ -1,4 +1,7 @@
+import { lazy, Suspense } from "react";
 import { motion } from "framer-motion";
+
+const FloatingGeometry = lazy(() => import("./FloatingGeometry"));
 
 const skills = [
   "Wondershare Filmora",
@@ -11,6 +14,8 @@ const skills = [
   "Aisensy",
   "WhatsApp Marketing",
   "Data Visualization",
+  "Orange",
+  "R Studio",
 ];
 
 const experience = [
@@ -36,35 +41,41 @@ const experience = [
 
 export default function AboutSection() {
   return (
-    <section id="about" className="section-padding">
-      <div className="max-w-7xl mx-auto">
+    <section id="about" className="section-padding relative overflow-hidden">
+      {/* 3D Background */}
+      <Suspense fallback={null}>
+        <FloatingGeometry className="opacity-40" />
+      </Suspense>
+
+      <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-12"
+          className="mb-14"
         >
-          <p className="text-sm font-mono tracking-[0.2em] uppercase text-muted-foreground mb-3">
+          <p className="text-xs font-medium tracking-[0.3em] uppercase text-muted-foreground mb-4">
             About Me
           </p>
-          <h2 className="text-4xl md:text-5xl font-bold">
-            Atharv <span className="neon-text">Shah</span>
+          <h2 className="font-display text-4xl md:text-5xl font-bold">
+            Atharv{" "}
+            <span className="text-gradient">Shah</span>
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14">
           {/* Bio */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="text-muted-foreground leading-[1.8] mb-5">
               I'm a Marketing & Information Systems student based in Sydney, Australia.
               I love the intersection of business strategy and technology—connecting
               with people and building digital solutions that drive real results.
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-8">
+            <p className="text-muted-foreground leading-[1.8] mb-10">
               From designing UI in Figma to running data-driven WhatsApp campaigns,
               I bring a unique blend of creative and analytical thinking. This portfolio
               was built using a modern tech stack including React, Three.js, Tailwind CSS,
@@ -79,8 +90,8 @@ export default function AboutSection() {
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
-                  className="glass-card px-4 py-2 text-xs font-mono text-muted-foreground"
+                  transition={{ delay: i * 0.04 }}
+                  className="px-4 py-2 text-xs font-medium text-muted-foreground bg-secondary/60 border border-white/[0.06] rounded-full"
                 >
                   {skill}
                 </motion.span>
@@ -94,8 +105,8 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-lg font-semibold mb-6 neon-text-violet">Experience</h3>
-            <div className="space-y-6">
+            <h3 className="font-display text-lg font-semibold mb-8 text-gradient">Experience</h3>
+            <div className="space-y-5">
               {experience.map((exp, i) => (
                 <motion.div
                   key={exp.company}
@@ -103,14 +114,14 @@ export default function AboutSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="glass-card p-5 relative overflow-hidden"
+                  className="card-subtle p-6 relative overflow-hidden"
                 >
-                  <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary to-accent" />
-                  <div className="pl-4">
-                    <p className="text-xs font-mono text-muted-foreground">{exp.period}</p>
-                    <h4 className="text-foreground font-semibold mt-1">{exp.role}</h4>
-                    <p className="text-sm text-primary">{exp.company}</p>
-                    <p className="text-sm text-muted-foreground mt-2">{exp.desc}</p>
+                  <div className="absolute top-0 left-0 w-0.5 h-full bg-gradient-to-b from-primary to-accent" />
+                  <div className="pl-5">
+                    <p className="text-xs font-medium tracking-wider text-muted-foreground">{exp.period}</p>
+                    <h4 className="font-display text-foreground font-semibold mt-1.5">{exp.role}</h4>
+                    <p className="text-sm text-primary mt-0.5">{exp.company}</p>
+                    <p className="text-sm text-muted-foreground mt-2.5 leading-relaxed">{exp.desc}</p>
                   </div>
                 </motion.div>
               ))}

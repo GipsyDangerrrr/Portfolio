@@ -1,23 +1,34 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import PortfolioSection from "@/components/PortfolioSection";
+import VideoCarousel3D from "@/components/VideoCarousel3D";
 import CaseStudySection from "@/components/CaseStudySection";
 import AboutSection from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="min-h-screen text-foreground overflow-x-hidden">
       <Navbar />
-      <HeroSection />
-      <div className="gradient-line" />
-      <PortfolioSection />
-      <div className="gradient-line" />
-      <CaseStudySection />
-      <div className="gradient-line" />
-      <AboutSection />
-      <div className="gradient-line" />
-      <ContactSection />
+      {/* Hero — darkest */}
+      <div className="bg-dark-1">
+        <HeroSection />
+      </div>
+      {/* Portfolio — slightly lighter */}
+      <div className="bg-dark-2">
+        <VideoCarousel3D />
+      </div>
+      {/* Case Study — darkest */}
+      <div className="bg-dark-1">
+        <CaseStudySection />
+      </div>
+      {/* About — medium */}
+      <div className="bg-dark-3">
+        <AboutSection />
+      </div>
+      {/* Contact — slightly lighter */}
+      <div className="bg-dark-2">
+        <ContactSection />
+      </div>
     </div>
   );
 };

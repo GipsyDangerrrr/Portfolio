@@ -32,8 +32,8 @@ export default function PortfolioCard({
     const rect = cardRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
-    setRotateX(-y * 15);
-    setRotateY(x * 15);
+    setRotateX(-y * 8);
+    setRotateY(x * 8);
   };
 
   const handleMouseLeave = () => {
@@ -42,48 +42,47 @@ export default function PortfolioCard({
     setRotateY(0);
   };
 
-  const icon = type === "video" ? <Play size={20} /> : type === "web" ? <ExternalLink size={20} /> : <BarChart3 size={20} />;
-  const accentClass = type === "video" ? "neon-text" : type === "web" ? "neon-text-violet" : "neon-text";
+  const icon = type === "video" ? <Play size={18} /> : type === "web" ? <ExternalLink size={18} /> : <BarChart3 size={18} />;
+  const accentClass = type === "video" ? "text-primary" : type === "web" ? "text-accent" : "text-primary";
 
   return (
     <motion.div
       ref={cardRef}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ delay: index * 0.1, duration: 0.6 }}
+      transition={{ delay: index * 0.08, duration: 0.5 }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={handleMouseLeave}
       style={{
-        transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+        transform: `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
         transformStyle: "preserve-3d",
       }}
-      className="glass-card overflow-hidden cursor-pointer group"
+      className="card-subtle overflow-hidden cursor-pointer group h-full"
     >
       {/* Image / Preview */}
-      <div className="relative h-48 md:h-56 overflow-hidden bg-secondary">
+      <div className="relative h-48 md:h-56 overflow-hidden bg-secondary/50">
         {image ? (
           <img
             src={image}
             alt={title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             loading="lazy"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
-            <div className={`${accentClass} opacity-30`}>
-              {type === "video" ? <Play size={64} /> : type === "web" ? <ExternalLink size={64} /> : <BarChart3 size={64} />}
+            <div className={`${accentClass} opacity-20`}>
+              {type === "video" ? <Play size={56} /> : type === "web" ? <ExternalLink size={56} /> : <BarChart3 size={56} />}
             </div>
           </div>
         )}
         {/* Overlay */}
         <div
-          className={`absolute inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center transition-opacity duration-300 ${
-            hovered ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute inset-0 bg-background/85 backdrop-blur-md flex items-center justify-center transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"
+            }`}
         >
-          <div className={`${accentClass} flex items-center gap-2 text-sm font-medium`}>
+          <div className={`${accentClass} flex items-center gap-2.5 text-sm font-medium`}>
             {icon}
             <span>{type === "video" ? "Play Reel" : type === "web" ? "View Project" : "View Metrics"}</span>
           </div>
@@ -92,18 +91,18 @@ export default function PortfolioCard({
 
       {/* Content */}
       <div className="p-5">
-        <span className={`text-xs font-mono tracking-wider uppercase ${accentClass}`}>
+        <span className={`text-xs font-medium tracking-[0.15em] uppercase ${accentClass}`}>
           {category}
         </span>
-        <h3 className="text-lg font-semibold mt-2 text-foreground">{title}</h3>
-        <p className="text-sm text-muted-foreground mt-2 line-clamp-2">{description}</p>
+        <h3 className="font-display text-lg font-semibold mt-2 text-foreground">{title}</h3>
+        <p className="text-sm text-muted-foreground mt-2 leading-relaxed line-clamp-2">{description}</p>
 
         {metrics && (
           <div className="mt-4 grid grid-cols-2 gap-3">
             {metrics.map((m) => (
-              <div key={m.label} className="text-center glass-card p-2">
-                <p className={`text-lg font-bold ${accentClass}`}>{m.value}</p>
-                <p className="text-xs text-muted-foreground">{m.label}</p>
+              <div key={m.label} className="text-center bg-secondary/40 rounded-lg p-3">
+                <p className={`text-lg font-bold font-display ${accentClass}`}>{m.value}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{m.label}</p>
               </div>
             ))}
           </div>
