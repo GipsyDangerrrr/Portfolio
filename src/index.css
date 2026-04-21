@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+@import "@fontsource/geist-sans/400.css";
+@import "@fontsource/geist-sans/500.css";
+@import "@fontsource/geist-sans/600.css";
+@import "@fontsource/geist-sans/700.css";
 
 @tailwind base;
 @tailwind components;
@@ -6,51 +10,45 @@
 
 @layer base {
     :root {
-        --background: 225 25% 6%;
-        --foreground: 220 15% 93%;
+        --background: 260 87% 3%;
+        --foreground: 40 6% 95%;
 
-        --card: 225 20% 9%;
-        --card-foreground: 220 15% 93%;
+        --card: 240 6% 9%;
+        --card-foreground: 40 6% 95%;
 
-        --popover: 225 20% 9%;
-        --popover-foreground: 220 15% 93%;
+        --popover: 240 6% 9%;
+        --popover-foreground: 40 6% 95%;
 
-        --primary: 220 90% 56%;
+        --primary: 262 83% 58%;
         --primary-foreground: 0 0% 100%;
 
-        --secondary: 225 18% 13%;
-        --secondary-foreground: 220 15% 85%;
+        --secondary: 240 4% 16%;
+        --secondary-foreground: 40 6% 95%;
 
-        --muted: 225 15% 15%;
-        --muted-foreground: 220 10% 55%;
+        --muted: 240 4% 16%;
+        --muted-foreground: 240 5% 65%;
 
-        --accent: 260 70% 60%;
+        --accent: 262 83% 58%;
         --accent-foreground: 0 0% 100%;
 
-        --destructive: 0 84% 60%;
+        --destructive: 0 84.2% 60.2%;
         --destructive-foreground: 0 0% 100%;
 
-        --border: 225 15% 14%;
-        --input: 225 15% 14%;
-        --ring: 220 90% 56%;
+        --border: 240 4% 20%;
+        --input: 240 4% 20%;
+        --ring: 262 83% 58%;
 
-        --radius: 0.875rem;
+        --radius: 0.75rem;
 
-        /* Custom tokens */
+        --hero-heading: 40 10% 96%;
+        --hero-sub: 40 6% 82%;
+
+        /* Legacy custom tokens retained for other components */
         --neon-blue: 220 90% 56%;
         --neon-violet: 260 70% 60%;
         --glass-bg: 225 20% 10% / 0.6;
         --glass-border: 0 0% 100% / 0.08;
         --glass-blur: 24px;
-
-        --sidebar-background: 225 22% 8%;
-        --sidebar-foreground: 220 15% 93%;
-        --sidebar-primary: 220 90% 56%;
-        --sidebar-primary-foreground: 0 0% 100%;
-        --sidebar-accent: 225 18% 13%;
-        --sidebar-accent-foreground: 220 15% 93%;
-        --sidebar-border: 225 15% 14%;
-        --sidebar-ring: 220 90% 56%;
     }
 }
 
@@ -85,16 +83,46 @@
         font-weight: 500;
         letter-spacing: 0.04em;
     }
+
+    /* Reset to light text inside dark containers */
+    .glass,
+    .liquid-glass,
+    .card-subtle,
+    .bg-dark-1,
+    .bg-dark-2,
+    .bg-dark-3 {
+        --foreground: 220 15% 93% !important;
+        --muted-foreground: 220 10% 65% !important;
+        --neon-blue: 220 90% 56% !important;
+        --neon-violet: 260 70% 60% !important;
+        --primary: 220 90% 56% !important;
+        color: hsl(var(--foreground));
+    }
 }
 
 @layer components {
 
     /* — Glass effects — */
     .glass {
-        background: hsla(var(--glass-bg));
-        backdrop-filter: blur(var(--glass-blur));
-        -webkit-backdrop-filter: blur(var(--glass-blur));
-        border: 1px solid hsla(var(--glass-border));
+        background: rgba(15, 20, 35, 0.85);
+        /* Deep dark inverse tint */
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .liquid-glass {
+        background: linear-gradient(135deg, rgba(30, 35, 50, 0.7) 0%, rgba(10, 15, 25, 0.85) 100%);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-top: 1px solid rgba(255, 255, 255, 0.4);
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow:
+            inset 0 1px 1px rgba(255, 255, 255, 0.3),
+            inset 0 -4px 8px rgba(0, 0, 0, 0.6),
+            0 20px 40px rgba(0, 0, 0, 0.6);
     }
 
     .glass-card {
@@ -208,8 +236,36 @@
         background-color: hsl(225 20% 10%);
     }
 
+
     .section-padding {
         @apply px-6 py-24 md:px-12 lg:px-24 lg:py-32;
+    }
+
+    .liquid-glass {
+        background: rgba(255, 255, 255, 0.01);
+        background-blend-mode: luminosity;
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        border: none;
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .liquid-glass::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 1.4px;
+        background: linear-gradient(180deg,
+                rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.15) 20%,
+                rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0) 60%,
+                rgba(255, 255, 255, 0.15) 80%, rgba(255, 255, 255, 0.45) 100%);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
     }
 
     .gradient-line {
@@ -220,22 +276,11 @@
                 hsla(var(--neon-violet) / 0.4),
                 transparent);
     }
-
-    /* — Section divider — */
-    .section-divider {
-        height: 1px;
-        background: linear-gradient(90deg,
-                transparent 0%,
-                hsl(var(--border)) 20%,
-                hsl(var(--border)) 80%,
-                transparent 100%);
-        margin: 0 auto;
-        max-width: 90%;
-    }
 }
 
 /* — Keyframe animations — */
 @keyframes glitch {
+
     0% {
         transform: translate(0);
     }

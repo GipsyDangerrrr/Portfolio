@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { motion } from "framer-motion";
+import { BRAND } from "@/config/brand";
 
 const FloatingGeometry = lazy(() => import("./FloatingGeometry"));
 
@@ -40,6 +41,10 @@ const experience = [
 ];
 
 export default function AboutSection() {
+  // Extract first and last name from siteTitle for the gradient effect
+  const [firstName, ...lastNameParts] = BRAND.typography.siteTitle.split(" ");
+  const lastName = lastNameParts.join(" ");
+
   return (
     <section id="about" className="section-padding relative overflow-hidden">
       {/* 3D Background */}
@@ -52,15 +57,17 @@ export default function AboutSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-14"
+          className="mb-14 text-center liquid-glass p-8 md:p-12 rounded-[4rem] relative overflow-hidden max-w-2xl mx-auto"
         >
-          <p className="text-xs font-medium tracking-[0.3em] uppercase text-muted-foreground mb-4">
-            About Me
-          </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold">
-            Atharv{" "}
-            <span className="text-gradient">Shah</span>
-          </h2>
+          <div className="relative z-10">
+            <p className="text-xs font-medium tracking-[0.3em] uppercase text-muted-foreground mb-4">
+              About Me
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl font-bold">
+              {firstName}{" "}
+              <span className="text-gradient">{lastName}</span>
+            </h2>
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14">
@@ -69,33 +76,36 @@ export default function AboutSection() {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            className="liquid-glass p-8 md:p-10 rounded-[3rem] relative overflow-hidden"
           >
-            <p className="text-muted-foreground leading-[1.8] mb-5">
-              I'm a Marketing & Information Systems student based in Sydney, Australia.
-              I love the intersection of business strategy and technology—connecting
-              with people and building digital solutions that drive real results.
-            </p>
-            <p className="text-muted-foreground leading-[1.8] mb-10">
-              From designing UI in Figma to running data-driven WhatsApp campaigns,
-              I bring a unique blend of creative and analytical thinking. This portfolio
-              was built using a modern tech stack including React, Three.js, Tailwind CSS,
-              and Framer Motion.
-            </p>
+            <div className="relative z-10">
+              <p className="text-muted-foreground leading-[1.8] mb-5">
+                I'm a Marketing & Information Systems student based in Sydney, Australia.
+                I love the intersection of business strategy and technology—connecting
+                with people and building digital solutions that drive real results.
+              </p>
+              <p className="text-muted-foreground leading-[1.8] mb-10">
+                From designing UI in Figma to running data-driven WhatsApp campaigns,
+                I bring a unique blend of creative and analytical thinking. This portfolio
+                was built using a modern tech stack including React, Three.js, Tailwind CSS,
+                and Framer Motion.
+              </p>
 
-            {/* Skills */}
-            <div className="flex flex-wrap gap-2">
-              {skills.map((skill, i) => (
-                <motion.span
-                  key={skill}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.04 }}
-                  className="px-4 py-2 text-xs font-medium text-muted-foreground bg-secondary/60 border border-white/[0.06] rounded-full"
-                >
-                  {skill}
-                </motion.span>
-              ))}
+              {/* Skills */}
+              <div className="flex flex-wrap gap-2">
+                {skills.map((skill, i) => (
+                  <motion.span
+                    key={skill}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.04 }}
+                    className="px-4 py-2 text-xs font-medium rounded-full bg-white/5 border border-white/10 text-foreground transition-transform hover:scale-105"
+                  >
+                    {skill}
+                  </motion.span>
+                ))}
+              </div>
             </div>
           </motion.div>
 

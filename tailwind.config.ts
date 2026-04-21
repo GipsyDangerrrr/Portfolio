@@ -14,11 +14,15 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Montserrat", "sans-serif"],
+        sans: ["Geist Sans", "Montserrat", "sans-serif"],
         display: ["Montserrat", "sans-serif"],
         mono: ["Montserrat", "sans-serif"],
       },
       colors: {
+        hero: {
+          heading: "hsl(var(--hero-heading))",
+          sub: "hsl(var(--hero-sub))",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -101,6 +105,10 @@ export default {
           "0%, 100%": { backgroundPosition: "0% 50%" },
           "50%": { backgroundPosition: "100% 50%" },
         },
+        marquee: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -110,6 +118,7 @@ export default {
         "float-subtle": "float-subtle 5s ease-in-out infinite",
         "pulse-neon": "pulse-neon 3s ease-in-out infinite",
         "gradient-shift": "gradient-shift 6s ease infinite",
+        marquee: "marquee 20s linear infinite",
       },
     },
   },

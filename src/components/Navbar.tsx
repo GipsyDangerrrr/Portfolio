@@ -5,7 +5,7 @@ import { Menu, X } from "lucide-react";
 const links = [
   { label: "Home", href: "#hero" },
   { label: "Portfolio", href: "#portfolio" },
-  { label: "Case Study", href: "#casestudy" },
+  { label: "Impact", href: "#impact" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
@@ -13,18 +13,44 @@ const links = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
+    const onScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Scrolled state for background opacity
+      setScrolled(currentScrollY > 20);
+
+      // Hide/Show logic
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        // Scrolling down - hide
+        setVisible(false);
+      } else {
+        // Scrolling up - show
+        setVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [lastScrollY]);
 
   return (
-    <nav
-      className="fixed top-4 left-4 right-4 z-50 transition-all duration-500 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-2xl shadow-[0_4px_30px_rgba(0,0,0,0.1)] saturate-150"
+    <motion.nav
+      initial={false}
+      animate={{
+        y: visible ? 0 : -100,
+        backgroundColor: scrolled ? "rgba(255, 255, 255, 0.03)" : "rgba(255, 255, 255, 0)",
+        borderBottomColor: scrolled ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0)"
+      }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      className="fixed top-0 left-0 right-0 z-[1000] border-b backdrop-blur-2xl saturate-150"
     >
-      <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <a href="#hero" className="font-display text-xl font-bold tracking-tight">
           <span className="text-gradient">A</span>
           <span className="text-foreground">THARV</span>
@@ -78,6 +104,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 }

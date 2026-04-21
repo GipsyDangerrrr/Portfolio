@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin } from "lucide-react";
 
 export default function ContactSection() {
   return (
@@ -9,18 +9,21 @@ export default function ContactSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          className="liquid-glass p-10 md:p-16 rounded-[4rem] relative overflow-hidden mb-16 max-w-3xl mx-auto"
         >
-          <p className="text-xs font-medium tracking-[0.3em] uppercase text-muted-foreground mb-4">
-            Get in Touch
-          </p>
-          <h2 className="font-display text-4xl md:text-6xl font-bold mb-6">
-            Let's{" "}
-            <span className="text-gradient">Connect</span>
-          </h2>
-          <p className="text-muted-foreground max-w-lg mx-auto mb-14 leading-relaxed">
-            Ready to bring your next project to life? Whether it's marketing strategy,
-            web design, or video production—I'm here to help.
-          </p>
+          <div className="relative z-10">
+            <p className="text-xs font-medium tracking-[0.3em] uppercase text-muted-foreground mb-4">
+              Get in Touch
+            </p>
+            <h2 className="font-display text-4xl md:text-6xl font-bold mb-6">
+              Let's{" "}
+              <span className="text-gradient">Connect</span>
+            </h2>
+            <p className="text-muted-foreground max-w-lg mx-auto leading-relaxed">
+              Ready to bring your next project to life? Whether it's marketing strategy,
+              web design, or video production—I'm here to help.
+            </p>
+          </div>
         </motion.div>
 
         <motion.div
@@ -38,11 +41,13 @@ export default function ContactSection() {
             <span className="text-sm font-medium text-foreground">atharvrc@gmail.com</span>
           </a>
           <a
-            href="tel:+61447771117"
+            href="https://www.linkedin.com/in/atharv-shah-bb925a2a6?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
+            target="_blank"
+            rel="noopener noreferrer"
             className="card-subtle px-8 py-4 flex items-center gap-3 hover:border-accent/30 transition-all duration-300 group cursor-pointer"
           >
-            <Phone size={16} className="text-accent" />
-            <span className="text-sm font-medium text-foreground">+61 447 771 117</span>
+            <Linkedin size={16} className="text-accent" />
+            <span className="text-sm font-medium text-foreground">LinkedIn</span>
           </a>
         </motion.div>
 

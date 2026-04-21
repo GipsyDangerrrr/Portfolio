@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# Assets
+Videos/
+temp_backup/
+*.bak
+*.mp4.bak

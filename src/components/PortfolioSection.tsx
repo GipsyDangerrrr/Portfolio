@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import PortfolioCard from "./PortfolioCard";
+import { BRAND } from "@/config/brand";
 
 const categories = ["All", "Video Editing", "Web Design", "Marketing"];
 
@@ -71,12 +72,27 @@ export default function PortfolioSection() {
           viewport={{ once: true }}
           className="mb-14"
         >
-          <p className="text-xs font-medium tracking-[0.3em] uppercase text-muted-foreground mb-4">
-            Selected Work
+          <p 
+            className="text-xs font-medium tracking-[0.3em] uppercase mb-4"
+            style={{ color: BRAND.portfolio.descriptionColor }}
+          >
+            {BRAND.portfolio.description}
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold">
-            <span className="text-gradient">Portfolio</span>{" "}
-            <span className="text-foreground">Showcase</span>
+          <h2 
+            className="text-4xl md:text-5xl font-bold leading-tight"
+            style={{ fontFamily: BRAND.portfolio.fontDisplay }}
+          >
+            <span style={{ color: BRAND.portfolio.titleColor }}>{BRAND.portfolio.title}</span>{" "}
+            <span 
+              style={{ 
+                background: BRAND.portfolio.subtitleGradient,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                display: "inline-block"
+              }}
+            >
+              {BRAND.portfolio.subtitle}
+            </span>
           </h2>
         </motion.div>
 
