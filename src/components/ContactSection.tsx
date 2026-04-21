@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Linkedin } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 export default function ContactSection() {
   return (
@@ -41,13 +41,11 @@ export default function ContactSection() {
             <span className="text-sm font-medium text-foreground">atharvrc@gmail.com</span>
           </a>
           <a
-            href="https://www.linkedin.com/in/atharv-shah-bb925a2a6?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="tel:+61447771117"
             className="card-subtle px-8 py-4 flex items-center gap-3 hover:border-accent/30 transition-all duration-300 group cursor-pointer"
           >
-            <Linkedin size={16} className="text-accent" />
-            <span className="text-sm font-medium text-foreground">LinkedIn</span>
+            <Phone size={16} className="text-accent" />
+            <span className="text-sm font-medium text-foreground">+61 447 771 117</span>
           </a>
         </motion.div>
 
