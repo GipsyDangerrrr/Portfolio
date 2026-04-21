@@ -29,7 +29,7 @@ export const BRAND = {
   // HERO SECTION (Monitor Screen)
   hero: {
     headline: "Marketer, Content Creator \n& Web Dev",
-    subtext: "I help grow brand presence",
+    subtext: "I help grow brand presence.",
 
     // Headline Styles
     headlineGradient: "linear-gradient(223deg, #E8E8E9 0%, #3A7BBF 104.15%)",
