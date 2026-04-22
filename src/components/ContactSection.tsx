@@ -59,7 +59,7 @@ export default function ContactSection() {
           className="flex items-center justify-center gap-2 text-muted-foreground text-sm mb-10"
         >
           <MapPin size={14} />
-          <span>Randwick, Sydney, Australia</span>
+          <span>Sydney, Australia</span>
         </motion.div>
 
         {/* Divider */}

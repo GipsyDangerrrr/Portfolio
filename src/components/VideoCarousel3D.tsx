@@ -129,6 +129,7 @@ function Carousel3D({ items, type = "video" }: { items: VideoItem[], type?: "vid
     const targetRotRef = useRef(0);
     const isPausedRef = useRef(false);
     const resumeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const [snapRotation, setSnapRotation] = useState(0);
     const [, setTick] = useState(0);
 
     const animate = useCallback(() => {
@@ -224,6 +225,11 @@ function Carousel3D({ items, type = "video" }: { items: VideoItem[], type?: "vid
             stopVideo(hoveredId);
         }
         isPausedRef.current = true;
+        
+        // Snap to nearest multiple of 360 to prevent "spinning spasm" on transition
+        const snap = Math.round(rotationRef.current / 360) * 360;
+        setSnapRotation(snap);
+        
         setHoveredId(id);
         setIsPlaying(true);
         playVideo(id);
@@ -283,7 +289,7 @@ function Carousel3D({ items, type = "video" }: { items: VideoItem[], type?: "vid
                 style={{
                     transformStyle: "preserve-3d",
                     transform: isFlat
-                        ? "rotateX(0deg) rotateY(0deg)"
+                        ? `rotateX(0deg) rotateY(${snapRotation}deg)`
                         : `rotateX(${TILT_X}deg) rotateY(${rotation}deg)`,
                     transition: isFlat ? "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)" : "none",
                 }}

@@ -86,9 +86,7 @@ export default function AboutSection() {
               </p>
               <p className="text-muted-foreground leading-[1.8] mb-10">
                 From designing UI in Figma to running data-driven WhatsApp campaigns,
-                I bring a unique blend of creative and analytical thinking. This portfolio
-                was built using a modern tech stack including React, Three.js, Tailwind CSS,
-                and Framer Motion.
+                I bring a unique blend of creative and analytical thinking.
               </p>
 
               {/* Skills */}

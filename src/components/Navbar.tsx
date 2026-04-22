@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { BRAND } from "@/config/brand";
 
 const links = [
   { label: "Home", href: "#hero" },
@@ -52,8 +53,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <a href="#hero" className="font-display text-xl font-bold tracking-tight">
-          <span className="text-gradient">A</span>
-          <span className="text-foreground">THARV</span>
+          <span className="text-gradient">{BRAND.typography.siteTitle}</span>
         </a>
 
         {/* Desktop */}
