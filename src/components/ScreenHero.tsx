@@ -8,6 +8,14 @@ interface ScreenHeroProps {
 const ScreenHero = ({ progress = 1 }: ScreenHeroProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [opacity, setOpacity] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -51,20 +59,20 @@ const ScreenHero = ({ progress = 1 }: ScreenHeroProps) => {
   }, []);
 
   // Calculate dynamic text offset based on zoom progress
-  const textTranslateY = (1 - progress) * 12;
+  const textTranslateY = (1 - progress) * (isMobile ? 6 : 12);
 
   return (
     <section className="bg-black relative h-full w-full flex flex-col items-center overflow-hidden border-none cursor-default">
       {/* Top Section: Text Content (Sharp, No Blurs) */}
       <div 
-        className="relative z-10 flex flex-col items-center text-center w-full pt-10 pb-4 px-6 shrink-0 transition-transform duration-100 ease-linear"
+        className={`relative z-10 flex flex-col items-center text-center w-full ${isMobile ? "pt-4" : "pt-10"} pb-4 px-6 shrink-0 transition-transform duration-100 ease-linear`}
         style={{ transform: `translateY(${textTranslateY}vh)` }}
       >
         <h1
           className="font-semibold tracking-[-0.04em] leading-[1.0] mb-3 whitespace-pre-line"
           style={{
             fontFamily: BRAND.hero.headlineFont,
-            fontSize: BRAND.hero.headlineSize,
+            fontSize: isMobile ? "min(10vw, 36px)" : BRAND.hero.headlineSize,
             background: BRAND.hero.headlineGradient,
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent"

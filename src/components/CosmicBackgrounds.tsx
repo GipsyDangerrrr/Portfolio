@@ -30,24 +30,24 @@ export default function CosmicBackgrounds() {
 
     const bgMap = {
         hero: null,
-        portfolio: "/bg-portfolio-new.png",
-        impact: "/bg-impact-new.png",
-        about: "/bg-about-new.jpg",
-        contact: "/bg-portfolio-new.png",
+        portfolio: `/Portfolio/bg-portfolio-new.png`,
+        impact: `/Portfolio/bg-impact-new.png`,
+        about: `/Portfolio/bg-about-new.jpg`,
+        contact: `/Portfolio/bg-portfolio-new.png`,
     };
 
     const currentBg = bgMap[activeSection as keyof typeof bgMap];
 
     return (
-        <div className="fixed inset-0 w-full h-full z-[-1] pointer-events-none bg-black">
+        <div className="fixed inset-0 w-full h-full z-[-1] pointer-events-none /Portfolio/bg-black">
             {/* Dark Overlay (Always present to ensure high contrast) */}
-            <div className="absolute inset-0 bg-black/60 z-10" />
+            <div className="absolute inset-0 /Portfolio/bg-black/60 z-10" />
 
             {/* Preload images */}
             <div className="hidden">
-                <img src="/bg-portfolio-new.png" alt="preload" />
-                <img src="/bg-impact-new.png" alt="preload" />
-                <img src="/bg-about-new.jpg" alt="preload" />
+                <img src={`/Portfolio/bg-portfolio-new.png`} alt="preload" />
+                <img src={`/Portfolio/bg-impact-new.png`} alt="preload" />
+                <img src={`/Portfolio/bg-about-new.jpg`} alt="preload" />
             </div>
 
             <AnimatePresence mode="popLayout">

@@ -2,6 +2,8 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Pause, Volume2, VolumeX, ExternalLink, BarChart3, ChevronLeft, ChevronRight } from "lucide-react";
 import ProductCarousel from "./ProductCarousel";
+import expoditeImage from "../assets/expodite.png";
+import beniImpexImage from "../assets/beni-impex.png";
 
 /* ── Data ── */
 interface VideoItem {
@@ -12,19 +14,19 @@ interface VideoItem {
 }
 
 const videoProjects: VideoItem[] = [
-    { id: 1, title: "Mesh Dress - Chapter I", src: "/videos/mesh_dress_1.mp4" },
-    { id: 2, title: "Mesh Dress - Chapter II", src: "/videos/mesh_dress_2.mp4" },
-    { id: 3, title: "Mesh Dress - Chapter III", src: "/videos/mesh_dress_3.mp4" },
-    { id: 4, title: "The Wedding Gown", src: "/videos/wedding_dress_1.mp4" },
-    { id: 5, title: "Ethereal White", src: "/videos/white_dress_1.mp4" },
+    { id: 1, title: "Mesh Dress - Chapter I", src: "/Portfolio/videos/mesh_dress_1.mp4" },
+    { id: 2, title: "Mesh Dress - Chapter II", src: "/Portfolio/videos/mesh_dress_2.mp4" },
+    { id: 3, title: "Mesh Dress - Chapter III", src: "/Portfolio/videos/mesh_dress_3.mp4" },
+    { id: 4, title: "The Wedding Gown", src: "/Portfolio/videos/wedding_dress_1.mp4" },
+    { id: 5, title: "Ethereal White", src: "/Portfolio/videos/white_dress_1.mp4" },
 ];
 
 const marketingProjects = [
-    { id: 6, title: "Expodite: Fully Automate Your Exports", src: "/images/marketing/expodite/expodite-1.jpg" },
-    { id: 7, title: "Expodite: Accelerate Your Global Growth", src: "/images/marketing/expodite/expodite-2.jpg" },
-    { id: 8, title: "Expodite: Trade Faster, Not Harder", src: "/images/marketing/expodite/expodite-3.jpg" },
-    { id: 9, title: "Expodite: The Game Changer for Logistics", src: "/images/marketing/expodite/expodite-4.jpg" },
-    { id: 10, title: "Expodite: Your Success, Our Priority", src: "/images/marketing/expodite/expodite-5.jpg" },
+    { id: 6, title: "Expodite: Fully Automate Your Exports", src: "/Portfolio/images/marketing/expodite/expodite-1.jpg" },
+    { id: 7, title: "Expodite: Accelerate Your Global Growth", src: "/Portfolio/images/marketing/expodite/expodite-2.jpg" },
+    { id: 8, title: "Expodite: Trade Faster, Not Harder", src: "/Portfolio/images/marketing/expodite/expodite-3.jpg" },
+    { id: 9, title: "Expodite: The Game Changer for Logistics", src: "/Portfolio/images/marketing/expodite/expodite-4.jpg" },
+    { id: 10, title: "Expodite: Your Success, Our Priority", src: "/Portfolio/images/marketing/expodite/expodite-5.jpg" },
 ];
 
 interface OtherProject {
@@ -32,6 +34,7 @@ interface OtherProject {
     description: string;
     type: "web" | "marketing";
     link?: string;
+    image?: string;
 }
 
 const otherProjects: Record<string, OtherProject[]> = {
@@ -40,9 +43,10 @@ const otherProjects: Record<string, OtherProject[]> = {
             title: "Expodite Logistics",
             description: "High-performance logistics platform with specialized Fact-Checking architecture for the export-import industry.",
             type: "web",
-            link: "https://www.expodite.in"
+            link: "https://www.expodite.in",
+            image: expoditeImage
         },
-        { title: "SaaS Landing Page", description: "High-converting landing page with 3D elements and A/B tested hero sections.", type: "web" },
+        { title: "Beni Impex", description: "High-converting landing page with 3D elements and A/B tested hero sections.", type: "web", link: "https://beniimpex.expodite.in", image: beniImpexImage },
         { title: "Portfolio Redesign", description: "Personal brand site with 3D elements and interactive animations.", type: "web" },
     ],
     "Marketing": [
@@ -72,29 +76,35 @@ function useWindowSize() {
 }
 
 /* ── Device Frame Component ── */
-function IPhoneFrame({ children }: { children: React.ReactNode }) {
+function IPhoneFrame({ children, active = true }: { children: React.ReactNode, active?: boolean }) {
     return (
-        <div className="relative w-full h-full p-[6px] md:p-[7px] bg-[#1a1a1a] rounded-[38px] md:rounded-[42px] border-[1.5px] border-[#333] shadow-[0_0_40px_rgba(0,0,0,0.8),inset_0_0_10px_rgba(255,255,255,0.05)] ring-1 ring-white/10">
+        <div className={`relative w-full h-full transition-all duration-700 ${active ? 'p-[4px] md:p-[7px] /Portfolio/bg-[#1a1a1a] border-[1.5px] border-[#333] shadow-[0_0_40px_rgba(0,0,0,0.8),inset_0_0_10px_rgba(255,255,255,0.05)] ring-1 ring-white/10' : 'p-0 /Portfolio/bg-transparent border-0 shadow-none ring-0'} rounded-[32px] md:rounded-[42px]`}>
             {/* Bezel / Screen Housing */}
-            <div className="relative w-full h-full bg-black rounded-[32px] md:rounded-[36px] overflow-hidden border border-white/5">
+            <div className={`relative w-full h-full /Portfolio/bg-black ${active ? 'rounded-[28px] md:rounded-[36px]' : 'rounded-2xl'} overflow-hidden border border-white/5`}>
                 {/* Dynamic Island */}
-                <div className="absolute top-2 md:top-2.5 left-1/2 -translate-x-1/2 w-[50px] md:w-[70px] h-4 md:h-6 bg-black rounded-full z-50 flex items-center justify-between px-2 md:px-3">
-                    <div className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-[#111] border border-white/5" />
-                    <div className="w-3 h-1 md:w-4 md:h-1.5 rounded-full bg-[#111] border border-white/5" />
-                </div>
+                {active && (
+                    <div className="absolute top-2 md:top-2.5 left-1/2 -translate-x-1/2 w-[50px] md:w-[70px] h-4 md:h-6 /Portfolio/bg-black rounded-full z-50 flex items-center justify-between px-2 md:px-3">
+                        <div className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full /Portfolio/bg-[#111] border border-white/5" />
+                        <div className="w-3 h-1 md:w-4 md:h-1.5 rounded-full /Portfolio/bg-[#111] border border-white/5" />
+                    </div>
+                )}
 
-                {/* Video Content */}
+                {/* Content */}
                 {children}
 
                 {/* Glass Polish */}
-                <div className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-white/[0.03] via-transparent to-transparent z-40" />
+                {active && <div className="absolute inset-0 pointer-events-none /Portfolio/bg-gradient-to-tr from-white/[0.03] via-transparent to-transparent z-40" />}
             </div>
 
             {/* Side Buttons */}
-            <div className="absolute top-16 md:top-20 -left-[2px] w-[3px] h-6 md:h-8 bg-[#2a2a2a] rounded-r-sm border-r border-white/5" />
-            <div className="absolute top-30 md:top-36 -left-[2px] w-[3px] h-9 md:h-12 bg-[#2a2a2a] rounded-r-sm border-r border-white/5" />
-            <div className="absolute top-44 md:top-52 -left-[2px] w-[3px] h-9 md:h-12 bg-[#2a2a2a] rounded-r-sm border-r border-white/5" />
-            <div className="absolute top-34 md:top-40 -right-[2px] w-[3px] h-16 md:h-20 bg-[#2a2a2a] rounded-l-sm border-l border-white/5" />
+            {active && (
+                <>
+                    <div className="absolute top-16 md:top-20 -left-[2px] w-[3px] h-6 md:h-8 /Portfolio/bg-[#2a2a2a] rounded-r-sm border-r border-white/5" />
+                    <div className="absolute top-30 md:top-36 -left-[2px] w-[3px] h-9 md:h-12 /Portfolio/bg-[#2a2a2a] rounded-r-sm border-r border-white/5" />
+                    <div className="absolute top-44 md:top-52 -left-[2px] w-[3px] h-9 md:h-12 /Portfolio/bg-[#2a2a2a] rounded-r-sm border-r border-white/5" />
+                    <div className="absolute top-34 md:top-40 -right-[2px] w-[3px] h-16 md:h-20 /Portfolio/bg-[#2a2a2a] rounded-l-sm border-l border-white/5" />
+                </>
+            )}
         </div>
     );
 }
@@ -105,11 +115,11 @@ function Carousel3D({ items, type = "video" }: { items: VideoItem[], type?: "vid
     const isMobile = width < 768;
 
     // Responsive Constants
-    const CARD_W_ACTIVE = isMobile ? 120 : 200;
-    const CARD_H_ACTIVE = isMobile ? 220 : 340;
-    const RADIUS_ACTIVE = isMobile ? 280 : 380;
-    const SHOWCASE_W = isMobile ? 260 : 320;
-    const SHOWCASE_H = isMobile ? 520 : 640;
+    const CARD_W_ACTIVE = isMobile ? 100 : 200;
+    const CARD_H_ACTIVE = isMobile ? 180 : 340;
+    const RADIUS_ACTIVE = isMobile ? 220 : 380; // Reduced for mobile
+    const SHOWCASE_W = isMobile ? 220 : 320;
+    const SHOWCASE_H = isMobile ? 440 : 640;
 
     const count = items.length;
     const angleStep = 360 / count;
@@ -225,11 +235,11 @@ function Carousel3D({ items, type = "video" }: { items: VideoItem[], type?: "vid
             stopVideo(hoveredId);
         }
         isPausedRef.current = true;
-        
+
         // Snap to nearest multiple of 360 to prevent "spinning spasm" on transition
         const snap = Math.round(rotationRef.current / 360) * 360;
         setSnapRotation(snap);
-        
+
         setHoveredId(id);
         setIsPlaying(true);
         playVideo(id);
@@ -278,8 +288,8 @@ function Carousel3D({ items, type = "video" }: { items: VideoItem[], type?: "vid
             style={{
                 width: "100%",
                 maxWidth: isMobile ? "100%" : 1100,
-                height: isFlat ? (isMobile ? 600 : 800) : (isMobile ? 360 : 420),
-                perspective: isMobile ? "1000px" : "1400px",
+                height: isFlat ? (isMobile ? 500 : 800) : (isMobile ? 320 : 420),
+                perspective: isMobile ? "800px" : "1400px",
                 transition: "height 0.7s cubic-bezier(0.4, 0, 0.2, 1)",
             }}
             onMouseLeave={handleContainerLeave}
@@ -354,38 +364,23 @@ function Carousel3D({ items, type = "video" }: { items: VideoItem[], type?: "vid
                                 className={`relative w-full h-full cursor-pointer group ${isActive ? "" : "rounded-2xl overflow-hidden border border-white/[0.1] shadow-2xl shadow-black/60"}`}
                                 style={{ backfaceVisibility: "hidden" }}
                             >
-                                {isActive ? (
-                                    <IPhoneFrame>
+                                <IPhoneFrame active={isActive}>
+                                    {type === "video" ? (
                                         <video
                                             ref={(el) => { if (el) videoRefs.current.set(item.id, el); }}
                                             src={item.src}
-                                            muted={muted}
+                                            muted={isActive ? muted : true}
                                             playsInline
                                             loop
-                                            preload="metadata"
+                                            preload="auto"
                                             onTimeUpdate={(e) => isActive && handleTimeUpdate(e.currentTarget)}
-                                            className="absolute inset-0 w-full h-full object-cover"
+                                            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent z-10" />
-                                    </IPhoneFrame>
-                                ) : (
-                                    <>
-                                        {type === "video" ? (
-                                            <video
-                                                ref={(el) => { if (el) videoRefs.current.set(item.id, el); }}
-                                                src={item.src}
-                                                muted={true}
-                                                playsInline
-                                                loop
-                                                preload="metadata"
-                                                className="absolute inset-0 w-full h-full object-cover"
-                                            />
-                                        ) : (
-                                            <img src={item.src} alt={item.title} className="absolute inset-0 w-full h-full object-cover" />
-                                        )}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-                                    </>
-                                )}
+                                    ) : (
+                                        <img src={item.src} alt={item.title} className="absolute inset-0 w-full h-full object-cover" />
+                                    )}
+                                    <div className={`absolute inset-0 /Portfolio/bg-gradient-to-t from-black/80 via-black/10 to-transparent transition-opacity duration-500 ${isActive ? 'z-10 opacity-100' : 'opacity-60'}`} />
+                                </IPhoneFrame>
 
                                 {/* Info + Time slider */}
                                 <div className="absolute bottom-0 left-0 right-0 p-5 z-20">
@@ -395,7 +390,7 @@ function Carousel3D({ items, type = "video" }: { items: VideoItem[], type?: "vid
                                             <div className="flex items-center gap-3 mb-2">
                                                 <button
                                                     onClick={togglePlay}
-                                                    className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all text-white"
+                                                    className="w-8 h-8 rounded-full /Portfolio/bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 hover:/Portfolio/bg-white/20 transition-all text-white"
                                                 >
                                                     {isPlaying ? <Pause size={14} fill="currentColor" /> : <Play size={14} fill="currentColor" className="ml-0.5" />}
                                                 </button>
@@ -403,14 +398,14 @@ function Carousel3D({ items, type = "video" }: { items: VideoItem[], type?: "vid
                                                 <div
                                                     ref={progressBarRef}
                                                     onClick={handleSeek}
-                                                    className="relative flex-1 h-1.5 bg-white/15 rounded-full cursor-pointer group/bar"
+                                                    className="relative flex-1 h-1.5 /Portfolio/bg-white/15 rounded-full cursor-pointer group/bar"
                                                 >
                                                     <div
-                                                        className="absolute top-0 left-0 h-full bg-primary rounded-full transition-[width] duration-100"
+                                                        className="absolute top-0 left-0 h-full /Portfolio/bg-primary rounded-full transition-[width] duration-100"
                                                         style={{ width: `${progress}%` }}
                                                     />
                                                     <div
-                                                        className="absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-white rounded-full shadow-lg opacity-0 group-hover/bar:opacity-100 transition-opacity ring-2 ring-primary/50"
+                                                        className="absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 /Portfolio/bg-white rounded-full shadow-lg opacity-0 group-hover/bar:opacity-100 transition-opacity ring-2 ring-primary/50"
                                                         style={{ left: `calc(${progress}% - 7px)` }}
                                                     />
                                                 </div>
@@ -442,7 +437,7 @@ function Carousel3D({ items, type = "video" }: { items: VideoItem[], type?: "vid
                                 {isActive && (
                                     <button
                                         onClick={(e) => { e.stopPropagation(); setMuted(!muted); }}
-                                        className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center border border-white/15 hover:bg-black/70 transition-all z-30"
+                                        className="absolute top-4 right-4 w-9 h-9 rounded-full /Portfolio/bg-black/50 backdrop-blur-sm flex items-center justify-center border border-white/15 hover:/Portfolio/bg-black/70 transition-all z-30"
                                     >
                                         {muted ? <VolumeX size={15} className="text-white" /> : <Volume2 size={15} className="text-white" />}
                                     </button>
@@ -458,13 +453,13 @@ function Carousel3D({ items, type = "video" }: { items: VideoItem[], type?: "vid
                 <>
                     <button
                         onClick={() => switchTo(-1)}
-                        className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-white/[0.06] backdrop-blur-lg border border-white/[0.12] flex items-center justify-center hover:bg-white/[0.15] hover:border-white/[0.25] hover:scale-110 transition-all duration-300 cursor-pointer group"
+                        className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full /Portfolio/bg-white/[0.06] backdrop-blur-lg border border-white/[0.12] flex items-center justify-center hover:/Portfolio/bg-white/[0.15] hover:border-white/[0.25] hover:scale-110 transition-all duration-300 cursor-pointer group"
                     >
                         <ChevronLeft size={22} className="text-white/70 group-hover:text-white transition-colors" />
                     </button>
                     <button
                         onClick={() => switchTo(1)}
-                        className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-white/[0.06] backdrop-blur-lg border border-white/[0.12] flex items-center justify-center hover:bg-white/[0.15] hover:border-white/[0.25] hover:scale-110 transition-all duration-300 cursor-pointer group"
+                        className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full /Portfolio/bg-white/[0.06] backdrop-blur-lg border border-white/[0.12] flex items-center justify-center hover:/Portfolio/bg-white/[0.15] hover:border-white/[0.25] hover:scale-110 transition-all duration-300 cursor-pointer group"
                     >
                         <ChevronRight size={22} className="text-white/70 group-hover:text-white transition-colors" />
                     </button>
@@ -504,12 +499,16 @@ function ProjectGrid({ projects }: { projects: OtherProject[] }) {
                         onClick={handleClick}
                         className={`card-subtle overflow-hidden transition-all duration-300 ${project.link ? "cursor-pointer group hover:border-white/20 active:scale-[0.98]" : "cursor-default"}`}
                     >
-                        <div className="relative h-44 overflow-hidden bg-secondary/50 flex items-center justify-center">
-                            <div className={`${accentClass} opacity-20`}>
-                                {project.type === "web" ? <ExternalLink size={56} /> : <BarChart3 size={56} />}
-                            </div>
+                        <div className="relative h-44 overflow-hidden /Portfolio/bg-secondary/50 flex items-center justify-center">
+                            {project.image ? (
+                                <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+                            ) : (
+                                <div className={`${accentClass} opacity-20`}>
+                                    {project.type === "web" ? <ExternalLink size={56} /> : <BarChart3 size={56} />}
+                                </div>
+                            )}
                             {project.link && (
-                                <div className="absolute inset-0 bg-background/85 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div className="absolute inset-0 /Portfolio/bg-background/85 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                     <div className={`${accentClass} flex items-center gap-2 text-sm font-medium`}>
                                         {icon}
                                         <span>{project.type === "web" ? "Visit Live Site" : "View Metrics"}</span>
@@ -562,9 +561,10 @@ export default function VideoCarousel3D() {
                                 <button
                                     key={cat}
                                     onClick={() => setActiveCategory(cat)}
-                                    className={`px-6 py-2.5 text-sm font-medium rounded-full transition-all duration-300 cursor-pointer ${activeCategory === cat
-                                        ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                                        : "bg-white/5 border border-white/10 text-foreground hover:bg-white/10"
+                                    className={`px-6 py-2.5 text-sm font-medium rounded-full transition-all duration-300 cursor-pointer active:scale-95 ${
+                                        activeCategory === cat
+                                        ? "bg-primary text-primary-foreground shadow-[0_0_20px_rgba(255,255,255,0.1)] scale-105"
+                                        : "bg-white/5 border border-white/10 text-foreground/80 hover:text-foreground hover:bg-white/10 hover:border-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:-translate-y-0.5"
                                         }`}
                                 >
                                     {cat}

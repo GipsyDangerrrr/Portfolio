@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Download } from "lucide-react";
 import { BRAND } from "@/config/brand";
+import resumeFile from "@/assets/resume.pdf";
 
 const links = [
   { label: "Home", href: "#hero" },
@@ -68,6 +69,14 @@ export default function Navbar() {
               <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-px bg-primary transition-all duration-300 group-hover:w-6" />
             </a>
           ))}
+          <a
+            href={resumeFile}
+            download="Resume.pdf"
+            className="ml-4 px-5 py-2 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 rounded-full flex items-center gap-2 active:scale-95 shadow-lg shadow-primary/20"
+          >
+            <Download size={14} />
+            Resume
+          </a>
         </div>
 
         {/* Mobile toggle */}
@@ -100,6 +109,15 @@ export default function Navbar() {
                   {l.label}
                 </a>
               ))}
+              <a
+                href={resumeFile}
+                download="Resume.pdf"
+                onClick={() => setOpen(false)}
+                className="mt-2 px-4 py-3 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-all rounded-lg flex items-center justify-center gap-2"
+              >
+                <Download size={16} />
+                Download Resume
+              </a>
             </div>
           </motion.div>
         )}

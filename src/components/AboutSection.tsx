@@ -60,7 +60,7 @@ export default function AboutSection() {
           className="mb-14 text-center liquid-glass p-8 md:p-12 rounded-[4rem] relative overflow-hidden max-w-2xl mx-auto"
         >
           <div className="relative z-10">
-            <p className="text-xs font-medium tracking-[0.3em] uppercase text-muted-foreground mb-4">
+            <p className="text-xs font-semibold tracking-[0.3em] uppercase text-white/50 mb-4">
               About Me
             </p>
             <h2 className="font-display text-4xl md:text-5xl font-bold">
@@ -79,12 +79,12 @@ export default function AboutSection() {
             className="liquid-glass p-8 md:p-10 rounded-[3rem] relative overflow-hidden"
           >
             <div className="relative z-10">
-              <p className="text-muted-foreground leading-[1.8] mb-5">
+              <p className="text-white/80 leading-[1.8] mb-5 antialiased">
                 I'm a Marketing & Information Systems student based in Sydney, Australia.
                 I love the intersection of business strategy and technology—connecting
                 with people and building digital solutions that drive real results.
               </p>
-              <p className="text-muted-foreground leading-[1.8] mb-10">
+              <p className="text-white/80 leading-[1.8] mb-10 antialiased">
                 From designing UI in Figma to running data-driven WhatsApp campaigns,
                 I bring a unique blend of creative and analytical thinking.
               </p>
@@ -126,10 +126,10 @@ export default function AboutSection() {
                 >
                   <div className="absolute top-0 left-0 w-0.5 h-full bg-gradient-to-b from-primary to-accent" />
                   <div className="pl-5">
-                    <p className="text-xs font-medium tracking-wider text-muted-foreground">{exp.period}</p>
-                    <h4 className="font-display text-foreground font-semibold mt-1.5">{exp.role}</h4>
-                    <p className="text-sm text-primary mt-0.5">{exp.company}</p>
-                    <p className="text-sm text-muted-foreground mt-2.5 leading-relaxed">{exp.desc}</p>
+                    <p className="text-xs font-bold tracking-wider text-white/50">{exp.period}</p>
+                    <h4 className="font-display text-white font-semibold mt-1.5">{exp.role}</h4>
+                    <p className="text-sm text-primary/90 font-medium mt-0.5">{exp.company}</p>
+                    <p className="text-sm text-white/70 mt-2.5 leading-relaxed antialiased">{exp.desc}</p>
                   </div>
                 </motion.div>
               ))}

@@ -65,10 +65,10 @@ export default function HeroSection() {
         ? 2 * progress * progress
         : -1 + (4 - 2 * progress) * progress;
 
-    const scaleFactor = isMobile ? 1.05 : 1.39;
-    const zoomFactor = isMobile ? 0.05 : 0.69;
+    const scaleFactor = isMobile ? 1.45 : 1.39;
+    const zoomFactor = isMobile ? 0.45 : 0.69;
     const monitorScale = scaleFactor - t * zoomFactor;
-    const monitorTranslateY = t * (isMobile ? 12 : 6);
+    const monitorTranslateY = t * (isMobile ? 2 : 6); // Move less on Y for mobile as we are already zoomed
 
     return (
         <section
@@ -88,10 +88,10 @@ export default function HeroSection() {
                 style={{
                     position: "absolute",
                     inset: -50,
-                    backgroundImage: "url('/space-bg.jpg')",
+                    backgroundImage: `url('/Portfolio/space-bg.jpg')`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
-                    opacity: 0.3, 
+                    opacity: 0.3,
                     filter: "blur(4px)",
                     transform: `scale(${1.1 - t * 0.1})`,
                     transition: "transform 0.1s ease-out",
@@ -103,7 +103,7 @@ export default function HeroSection() {
             <div style={{
                 position: "absolute",
                 inset: 0,
-                zIndex: 100, 
+                zIndex: 100,
                 pointerEvents: "none",
             }}>
                 <Canvas
@@ -189,23 +189,15 @@ export default function HeroSection() {
                     }}>
                         <button
                             onClick={() => setShowSkillset(!showSkillset)}
-                            className="px-6 py-2.5 bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-xl rounded-full text-[10px] md:text-xs font-medium text-white/80 tracking-widest uppercase transition-all active:scale-95 flex items-center gap-2"
+                            className="group px-6 py-2.5 bg-white/10 hover:bg-white/20 border border-white/40 hover:border-white backdrop-blur-xl rounded-full text-[10px] md:text-xs font-medium text-white/90 hover:text-white tracking-widest uppercase transition-all active:scale-95 flex items-center gap-2"
                         >
-                            <span className={`w-2 h-2 rounded-full ${showSkillset ? 'bg-primary animate-pulse' : 'bg-white/40'}`} />
+                            <span className={`w-2 h-2 rounded-full transition-colors ${showSkillset ? 'bg-primary animate-pulse' : 'bg-white/60 group-hover:bg-white'}`} />
                             {showSkillset ? "Back to Experience" : "Click for Skillset"}
                         </button>
                     </div>
                 )}
 
-                {/* Brand label */}
-                <div style={{
-                    textAlign: "center", marginTop: 10,
-                    fontSize: "0.55rem", letterSpacing: "0.18em",
-                    color: "rgba(255,255,255,0.2)", fontFamily: "monospace",
-                    textTransform: "uppercase",
-                }}>
-                    Atharv Shah · 4K
-                </div>
+
 
                 {/* Stand & Desk */}
                 <div style={{
@@ -216,16 +208,18 @@ export default function HeroSection() {
                     flexDirection: "column",
                     alignItems: "center",
                 }}>
-                    <div style={{ width: 22, height: 48, background: "linear-gradient(to bottom, #1a1a2e, #0d0d1a)", zIndex: 9 }} />
-                    <div style={{ width: 180, height: 12, borderRadius: 8, background: "linear-gradient(to right, #0d0d1a, #1e1e30, #0d0d1a)", zIndex: 8 }} />
-                    
-                    <div style={{ position: "relative", marginTop: -6, width: "150%", display: "flex", flexDirection: "column", alignItems: "center", zIndex: 5 }}>
-                        <div style={{ width: "100%", height: 25, background: "linear-gradient(135deg, rgba(20, 10, 40, 0.6), rgba(10, 30, 60, 0.4))", backdropFilter: "blur(20px)", borderRadius: "20px 20px 0 0", borderTop: "1px solid rgba(150, 200, 255, 0.3)" }} />
-                        <div style={{ width: "80%", height: "20vh", display: "flex", justifyContent: "space-between" }}>
-                            <div style={{ width: 36, height: "100%", background: "rgba(10,10,30,0.95)" }} />
-                            <div style={{ width: 36, height: "100%", background: "rgba(10,10,30,0.95)" }} />
+                    <div style={{ width: isMobile ? 12 : 22, height: isMobile ? 20 : 48, background: "linear-gradient(to bottom, #1a1a2e, #0d0d1a)", zIndex: 9 }} />
+                    <div style={{ width: isMobile ? 100 : 180, height: isMobile ? 6 : 12, borderRadius: 8, background: "linear-gradient(to right, #0d0d1a, #1e1e30, #0d0d1a)", zIndex: 8 }} />
+
+                    {!isMobile && (
+                        <div style={{ position: "relative", marginTop: -6, width: "150%", display: "flex", flexDirection: "column", alignItems: "center", zIndex: 5 }}>
+                            <div style={{ width: "100%", height: 25, background: "linear-gradient(135deg, rgba(20, 10, 40, 0.6), rgba(10, 30, 60, 0.4))", backdropFilter: "blur(20px)", borderRadius: "20px 20px 0 0", borderTop: "1px solid rgba(150, 200, 255, 0.3)" }} />
+                            <div style={{ width: "80%", height: "20vh", display: "flex", justifyContent: "space-between" }}>
+                                <div style={{ width: 36, height: "100%", background: "rgba(10,10,30,0.95)" }} />
+                                <div style={{ width: 36, height: "100%", background: "rgba(10,10,30,0.15)" }} />
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </div>
             </div>
         </section>

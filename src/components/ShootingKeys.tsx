@@ -266,10 +266,11 @@ function AtomicSkillKey({
                     position={[0, KEY_HEIGHT / 2 + 0.011, 0.14]}
                     rotation={[-Math.PI / 2, 0, 0]}
                     fontSize={0.09}
+                    fontWeight={600}
                     color="#fff"
                     anchorX="center"
                     anchorY="middle"
-                    fillOpacity={globalOpacity * 0.6}
+                    fillOpacity={globalOpacity * 0.95}
                 >
                     {skill.label}
                 </Text>

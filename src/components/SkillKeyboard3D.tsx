@@ -14,23 +14,24 @@ interface SkillKey {
 }
 
 export const SKILLS: SkillKey[] = [
-    // Row 0 — top
-    { label: "Figma", short: "Fi", color: "#A259FF", row: 0, col: 0 },
+    // Row 0
+    { label: "Aisensy", short: "Ai", color: "#25D366", row: 0, col: 0 },
     { label: "Canva", short: "Cv", color: "#00C4CC", row: 0, col: 1 },
-    { label: "Webflow", short: "Wf", color: "#4353FF", row: 0, col: 2 },
-    { label: "Wix", short: "Wx", color: "#0C6EFC", row: 0, col: 3 },
-    // Row 1 — middle
+    { label: "CapCut", short: "Cc", color: "#FFFFFF", row: 0, col: 2 },
+    { label: "Figma", short: "Fi", color: "#A259FF", row: 0, col: 3 },
+    // Row 1
     { label: "Filmora", short: "Fm", color: "#00E5FF", row: 1, col: 0 },
-    { label: "CapCut", short: "Cc", color: "#FFFFFF", row: 1, col: 1 },
-    { label: "Lightroom", short: "Lr", color: "#31A8FF", row: 1, col: 2 },
-    { label: "React", short: "Re", color: "#61DAFB", row: 1, col: 3 },
-    // Row 2 — bottom-ish
-    { label: "Aisensy", short: "Ai", color: "#25D366", row: 2, col: 0 },
-    { label: "Marketing", short: "Mk", color: "#FF6B6B", row: 2, col: 1, width: 2.15 },
-    { label: "Analytics", short: "An", color: "#FBBF24", row: 2, col: 3 },
-    // Row 3 — bottom
-    { label: "R Studio", short: "Rs", color: "#75AADB", row: 3, col: 1 },
-    { label: "Orange", short: "Og", color: "#F48120", row: 3, col: 2 },
+    { label: "Lightroom", short: "Lr", color: "#31A8FF", row: 1, col: 1 },
+    { label: "Orange", short: "Og", color: "#F48120", row: 1, col: 2 },
+    { label: "Python", short: "Py", color: "#FFD43B", row: 1, col: 3 },
+    // Row 2
+    { label: "R Studio", short: "Rs", color: "#75AADB", row: 2, col: 0 },
+    { label: "React", short: "Re", color: "#61DAFB", row: 2, col: 1 },
+    { label: "SQL", short: "Sq", color: "#336791", row: 2, col: 2 },
+    { label: "Supabase", short: "Sb", color: "#3ECF8E", row: 2, col: 3 },
+    // Row 3
+    { label: "Webflow", short: "Wf", color: "#4353FF", row: 3, col: 1 },
+    { label: "Wix", short: "Wx", color: "#0C6EFC", row: 3, col: 2 },
 ];
 
 const KEY_SIZE = 0.58;
@@ -113,8 +114,9 @@ function KeyCap({ skill, hovered, onHover, onLeave }: {
                 <Text
                     position={[0, KEY_HEIGHT / 2 + 0.01, 0.12]}
                     rotation={[-Math.PI / 2, 0, 0]}
-                    fontSize={0.06}
-                    color={hovered ? (isLight ? "#333" : "#ddd") : "#555"}
+                    fontSize={0.075}
+                    fontWeight={600}
+                    color={hovered ? (isLight ? "#111" : "#fff") : "#aaa"}
                     anchorX="center"
                     anchorY="middle"
                 >

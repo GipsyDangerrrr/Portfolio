@@ -54,7 +54,7 @@ export default function ProductCarousel({ items, autoplayInterval = 5000 }: Prod
                         <img
                             src={items[index].src}
                             alt={items[index].title}
-                            className="max-h-[80vh] w-auto h-auto object-contain select-none rounded-xl"
+                            className="max-h-[50vh] md:max-h-[80vh] w-auto h-auto object-contain select-none rounded-xl shadow-2xl"
                         />
 
                         {/* High-fidelity Info Overlay */}
@@ -115,7 +115,7 @@ export default function ProductCarousel({ items, autoplayInterval = 5000 }: Prod
                     <button
                         key={item.id}
                         onClick={() => setIndex(i)}
-                        className={`relative flex-shrink-0 w-20 md:w-28 aspect-[4/3] rounded-xl overflow-hidden border-2 transition-all duration-500 ${i === index
+                        className={`relative flex-shrink-0 w-16 md:w-28 aspect-[4/3] rounded-lg md:rounded-xl overflow-hidden border-2 transition-all duration-500 ${i === index
                             ? "border-primary shadow-lg shadow-primary/20 scale-105"
                             : "border-white/5 opacity-30 hover:opacity-70 grayscale hover:grayscale-0"
                             }`}

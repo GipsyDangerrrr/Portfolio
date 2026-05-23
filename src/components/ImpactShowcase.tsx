@@ -42,7 +42,7 @@ const impactMetrics = [
         sub: "Last 30 days",
         icon: <Play size={20} />,
         color: "text-blue-400",
-        bg: "bg-blue-400/10"
+        bg: "/Portfolio/bg-blue-400/10"
     },
     {
         label: "Interactions",
@@ -50,7 +50,7 @@ const impactMetrics = [
         sub: "+100% Engagement",
         icon: <Heart size={20} />,
         color: "text-pink-400",
-        bg: "bg-pink-400/10"
+        bg: "/Portfolio/bg-pink-400/10"
     },
     {
         label: "New Followers",
@@ -58,7 +58,7 @@ const impactMetrics = [
         sub: "+225.3% Surge",
         icon: <Users size={20} />,
         color: "text-purple-400",
-        bg: "bg-purple-400/10"
+        bg: "/Portfolio/bg-purple-400/10"
     },
     {
         label: "Global Reach",
@@ -66,7 +66,7 @@ const impactMetrics = [
         sub: "Countries & Cities",
         icon: <Globe size={20} />,
         color: "text-emerald-400",
-        bg: "bg-emerald-400/10"
+        bg: "/Portfolio/bg-emerald-400/10"
     },
 ];
 
@@ -93,7 +93,7 @@ const featuredReel = {
 const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
         return (
-            <div className="bg-slate-900/90 backdrop-blur-md border border-white/10 p-3 rounded-xl shadow-2xl">
+            <div className="/Portfolio/bg-slate-900/90 backdrop-blur-md border border-white/10 p-3 rounded-xl shadow-2xl">
                 <p className="text-[10px] text-white/40 uppercase tracking-widest mb-1">{payload[0].payload.day}</p>
                 <p className="text-sm font-bold text-white flex items-center gap-2">
                     <Users size={12} className="text-purple-400" />
@@ -118,8 +118,8 @@ export default function ImpactShowcase() {
     return (
         <section id="impact" ref={containerRef} className="py-24 relative overflow-hidden">
             {/* Background Glows (Subtler for better contrast) */}
-            <div className="absolute top-1/4 -right-24 w-96 h-96 bg-primary/[0.04] rounded-full blur-[100px] pointer-events-none" />
-            <div className="absolute bottom-1/4 -left-24 w-96 h-96 bg-purple-500/[0.04] rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute top-1/4 -right-24 w-96 h-96 /Portfolio/bg-primary/[0.04] rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute bottom-1/4 -left-24 w-96 h-96 /Portfolio/bg-purple-500/[0.04] rounded-full blur-[100px] pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-6">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
@@ -129,7 +129,7 @@ export default function ImpactShowcase() {
                     >
                         <div className="relative z-10">
                             <div className="flex items-center gap-3 mb-4">
-                                <span className="h-px w-8 bg-primary/50" />
+                                <span className="h-px w-8 /Portfolio/bg-primary/50" />
                                 <p 
                                     className="text-xs font-bold tracking-[0.4em] uppercase"
                                     style={{ color: BRAND.impact.labelColor }}
@@ -149,7 +149,7 @@ export default function ImpactShowcase() {
                                     {BRAND.impact.subtitle}
                                 </span>
                             </h2>
-                            <p className="text-muted-foreground max-w-xl text-lg leading-relaxed">
+                            <p className="text-white/80 max-w-xl text-lg leading-relaxed antialiased">
                                 Transitioning from fashion design to social dominance. Within 30 days,
                                 a single creative concept sparked a viral loop, reaching millions
                                 and scaling the community by 225%.
@@ -165,16 +165,16 @@ export default function ImpactShowcase() {
                         transition={{ duration: 0.8, ease: "easeOut" }}
                         className="relative group max-w-[280px] sm:max-w-[320px] mx-auto lg:ml-auto lg:mr-12"
                     >
-                        <div className="absolute -inset-2 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-[2.5rem] blur-xl opacity-0 group-hover:opacity-100 transition duration-1000" />
-                        <div className="relative rounded-[2rem] overflow-hidden border border-white/10 bg-slate-900/40 backdrop-blur-sm shadow-2xl">
+                        <div className="absolute -inset-2 /Portfolio/bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-[2.5rem] blur-xl opacity-0 group-hover:opacity-100 transition duration-1000" />
+                        <div className="relative rounded-[2rem] overflow-hidden border border-white/10 /Portfolio/bg-slate-900/40 backdrop-blur-sm shadow-2xl">
                             <img
-                                src="/client-proof.jpg"
+                                src={`/Portfolio/client-proof.jpg`}
                                 alt="Instagram Growth Proof"
                                 className="w-full h-auto scale-[1.01] group-hover:scale-110 transition-transform duration-700"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 flex items-end p-8">
+                            <div className="absolute inset-0 /Portfolio/bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 flex items-end p-8">
                                 <div className="flex items-center gap-3 text-white">
-                                    <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                                    <div className="w-2 h-2 rounded-full /Portfolio/bg-emerald-500 animate-pulse" />
                                     <span className="text-[10px] font-bold tracking-[0.3em] uppercase">Verified Client Analytics</span>
                                 </div>
                             </div>
@@ -196,8 +196,8 @@ export default function ImpactShowcase() {
                             <div className={`w-12 h-12 ${metric.bg} ${metric.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
                                 {metric.icon}
                             </div>
-                            <h4 className="text-3xl font-bold text-foreground mb-2">{metric.value}</h4>
-                            <p className="text-sm text-muted-foreground font-medium mb-1">{metric.label}</p>
+                            <h4 className="text-3xl font-bold text-white mb-2">{metric.value}</h4>
+                            <p className="text-sm text-white/70 font-medium mb-1">{metric.label}</p>
                             <p className={`text-[10px] font-bold uppercase tracking-wider ${metric.color}`}>{metric.sub}</p>
                         </motion.div>
                     ))}
@@ -215,10 +215,10 @@ export default function ImpactShowcase() {
                     >
                         <div className="flex items-center justify-between mb-10">
                             <div>
-                                <h3 className="text-xl font-bold text-foreground mb-1">Community Expansion</h3>
-                                <p className="text-xs text-muted-foreground">Follower growth tracking (Feb 09 - Mar 10)</p>
+                                <h3 className="text-xl font-bold text-white mb-1">Community Expansion</h3>
+                                <p className="text-xs text-white/60">Follower growth tracking (Feb 09 - Mar 10)</p>
                             </div>
-                            <div className="px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                            <div className="px-4 py-1.5 rounded-full /Portfolio/bg-emerald-500/10 border border-emerald-500/20">
                                 <span className="text-xs font-bold text-emerald-400 flex items-center gap-1">
                                     <TrendingUp size={12} /> +225.3%
                                 </span>
@@ -274,11 +274,11 @@ export default function ImpactShowcase() {
                     >
                         <div className="flex items-center gap-4 mb-8">
                             <div className="w-12 h-16 rounded-xl overflow-hidden grayscale group-hover:grayscale-0 transition-all">
-                                <img src="/videos/reel-thumb-1.jpg" alt="Reel Thumbnail" className="w-full h-full object-cover" onError={(e) => (e.currentTarget.src = 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=200&h=300&fit=crop')} />
+                                <img src={`/Portfolio/videos/reel-thumb-1.jpg`} alt="Reel Thumbnail" className="w-full h-full object-cover" onError={(e) => (e.currentTarget.src = 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=200&h=300&fit=crop')} />
                             </div>
                             <div>
-                                <h4 className="text-sm font-bold text-foreground line-clamp-1">{featuredReel.title}</h4>
-                                <p className="text-[10px] text-muted-foreground mt-0.5">{featuredReel.date} • {featuredReel.duration}</p>
+                                <h4 className="text-sm font-bold text-white line-clamp-1">{featuredReel.title}</h4>
+                                <p className="text-[10px] text-white/50 mt-0.5">{featuredReel.date} • {featuredReel.duration}</p>
                             </div>
                         </div>
 
@@ -292,22 +292,22 @@ export default function ImpactShowcase() {
                             </div>
 
                             <div className="grid grid-cols-2 gap-4">
-                                <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/[0.06]">
+                                <div className="p-4 rounded-2xl /Portfolio/bg-white/[0.04] border border-white/[0.06]">
                                     <Heart size={14} className="text-pink-500 mb-2" />
                                     <p className="text-lg font-bold text-foreground">{featuredReel.likes}</p>
                                     <p className="text-[9px] text-muted-foreground uppercase tracking-tighter">Likes</p>
                                 </div>
-                                <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/[0.06]">
+                                <div className="p-4 rounded-2xl /Portfolio/bg-white/[0.04] border border-white/[0.06]">
                                     <Bookmark size={14} className="text-amber-500 mb-2" />
                                     <p className="text-lg font-bold text-foreground">{featuredReel.saves}</p>
                                     <p className="text-[9px] text-muted-foreground uppercase tracking-tighter">Saves</p>
                                 </div>
-                                <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/[0.06]">
+                                <div className="p-4 rounded-2xl /Portfolio/bg-white/[0.04] border border-white/[0.06]">
                                     <Send size={14} className="text-blue-500 mb-2" />
                                     <p className="text-lg font-bold text-foreground">{featuredReel.shares}</p>
                                     <p className="text-[9px] text-muted-foreground uppercase tracking-tighter">Shares</p>
                                 </div>
-                                <div className="p-4 rounded-2xl bg-white/[0.04] border border-white/[0.06]">
+                                <div className="p-4 rounded-2xl /Portfolio/bg-white/[0.04] border border-white/[0.06]">
                                     <MessageCircle size={14} className="text-emerald-500 mb-2" />
                                     <p className="text-lg font-bold text-foreground">{featuredReel.comments}</p>
                                     <p className="text-[9px] text-muted-foreground uppercase tracking-tighter">Comments</p>
@@ -344,12 +344,12 @@ export default function ImpactShowcase() {
                                         <span className="text-muted-foreground font-medium">{loc.name}</span>
                                         <span className="text-emerald-400 font-bold">{loc.percentage}%</span>
                                     </div>
-                                    <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                                    <div className="h-1.5 w-full /Portfolio/bg-white/5 rounded-full overflow-hidden">
                                         <motion.div
                                             initial={{ width: 0 }}
                                             whileInView={{ width: `${(loc.percentage / 3.8) * 100}%` }}
                                             transition={{ duration: 1.5, delay: i * 0.1, ease: "easeOut" }}
-                                            className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full"
+                                            className="h-full /Portfolio/bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full"
                                         />
                                     </div>
                                 </div>
@@ -365,7 +365,7 @@ export default function ImpactShowcase() {
                     >
                         <div className="aspect-square rounded-full border border-primary/20 flex items-center justify-center p-12">
                             <div className="aspect-square w-full rounded-full border border-primary/10 flex items-center justify-center p-12">
-                                <div className="w-full h-full bg-primary/5 rounded-full blur-[60px] animate-pulse" />
+                                <div className="w-full h-full /Portfolio/bg-primary/5 rounded-full blur-[60px] animate-pulse" />
                                 <div className="absolute inset-0 flex items-center justify-center">
                                     <div className="text-center">
                                         <p className="text-5xl font-black text-foreground mb-2">1,3M</p>

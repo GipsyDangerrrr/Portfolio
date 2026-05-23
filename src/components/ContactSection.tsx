@@ -19,7 +19,7 @@ export default function ContactSection() {
               Let's{" "}
               <span className="text-gradient">Connect</span>
             </h2>
-            <p className="text-muted-foreground max-w-lg mx-auto leading-relaxed">
+            <p className="text-white/80 max-w-lg mx-auto leading-relaxed antialiased">
               Ready to bring your next project to life? Whether it's marketing strategy,
               web design, or video production—I'm here to help.
             </p>
@@ -56,7 +56,7 @@ export default function ContactSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="flex items-center justify-center gap-2 text-muted-foreground text-sm mb-10"
+          className="flex items-center justify-center gap-2 text-white/50 text-sm mb-10"
         >
           <MapPin size={14} />
           <span>Sydney, Australia</span>
@@ -65,7 +65,7 @@ export default function ContactSection() {
         {/* Divider */}
         <div className="section-divider mb-8" />
 
-        <p className="text-xs text-muted-foreground/60 font-medium tracking-wider">
+        <p className="text-xs text-white/40 font-medium tracking-wide">
           © 2026 Atharv Shah — Built with React, Three.js & Tailwind CSS
         </p>
       </div>

@@ -5,15 +5,15 @@ import { Button } from './ui/button';
 const ScreenNavbar = () => {
   return (
     <div className="w-full">
-      <nav className="full-width py-5 px-8 flex flex-row justify-between items-center bg-background/50 backdrop-blur-md">
+      <nav className="full-width py-5 px-8 flex flex-row justify-between items-center /Portfolio/bg-background/50 backdrop-blur-md">
         {/* Left: Logo */}
         <div className="flex items-center">
           <img 
-            src="/logo.png" 
+            src={`/Portfolio/logo.png`} 
             alt="Logo" 
             className="h-8 w-auto object-contain"
             onError={(e) => {
-              // Fallback if logo.png doesn't exist
+              // Fallback if /Portfolio/logo.png doesn't exist
               e.currentTarget.src = "https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo1.png";
               e.currentTarget.className = "h-8 w-auto brightness-0 invert opacity-80";
             }}
@@ -45,7 +45,7 @@ const ScreenNavbar = () => {
       </nav>
 
       {/* Gradient Divider */}
-      <div className="mt-[3px] w-full h-px bg-gradient-to-r from-transparent via-foreground/20 to-transparent" />
+      <div className="mt-[3px] w-full h-px /Portfolio/bg-gradient-to-r from-transparent via-foreground/20 to-transparent" />
     </div>
   );
 };
